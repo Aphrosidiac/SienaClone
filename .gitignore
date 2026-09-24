@@ -3,3 +3,5 @@ dist
 docs/reference/*/shots
 docs/qa/shots
 .DS_Store
+docs/reference/*/raw/
+docs/reference/*/bundle/
