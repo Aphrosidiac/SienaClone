@@ -1,0 +1,26 @@
+{
+  "name": "ff-siena",
+  "private": true,
+  "version": "0.1.0",
+  "type": "module",
+  "description": "FF Dev Studio portfolio demo — siena.film recreated under our own mark. See docs/brief.md.",
+  "scripts": {
+    "dev": "vite --port 3164 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --port 3165 --strictPort"
+  },
+  "devDependencies": {
+    "pixelmatch": "^7.2.0",
+    "playwright": "^1.63.0",
+    "pngjs": "^7.0.0",
+    "vite": "^8.3.0"
+  },
+  "dependencies": {
+    "@unseenco/taxi": "^1.9.1",
+    "gsap": "^3.15.0",
+    "howler": "^2.2.4",
+    "lenis": "^1.1.16",
+    "ogl": "^1.0.11",
+    "virtual-scroll": "^2.2.1"
+  }
+}

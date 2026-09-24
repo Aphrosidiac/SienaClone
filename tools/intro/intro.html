@@ -1,0 +1,62 @@
+<!doctype html>
+<!-- FF intro film. Reproduces the measured structure of the reference's preloader film
+     (docs/reference-spec.md §Preloader): cream field, vertical stripes that thicken to black,
+     the mark drawn in difference so it reads through the stripes, subtitle blurs in last. -->
+<html><head><meta charset="utf-8">
+<style>
+@font-face{font-family:NBI;src:url(/assets/img/6732069959125d0789024f2c_NB-International-Regular.ttf)}
+html,body{margin:0;background:#000}canvas{display:block}
+</style></head><body><canvas id="c"></canvas>
+<script>
+const P = new URLSearchParams(location.search);
+const MOBILE = P.get('m') === '1';
+const W = MOBILE ? 1080 : 2160, H = MOBILE ? 1920 : 1440;
+// measured from the reference films
+const CFG = MOBILE
+  ? { pitch: 52, s0: 0.2, s1: 2.0, markW: 388, markX: 365, markY: 884, markH: 150, subY: 1055, subH: 14, sub0: 2.05, sub1: 2.55, dur: 3.183 }
+  : { pitch: 67, s0: 0.15, s1: 2.35, markW: 498, markX: 855, markY: 623, markH: 193, subY: 842, subH: 18, sub0: 2.4, sub1: 2.9, dur: 4.05 };
+const CREAM = '#FCF5EE';
+const c = document.getElementById('c'); c.width = W; c.height = H;
+const x = c.getContext('2d');
+// FF mark paths (brand-system/assets/svg/ff-mark-white.svg), viewBox 194x72
+const MARK = new Path2D('M0 72 16 0h14L14 72ZM24 72 40 0h14L38 72ZM72 0h54v15H88v13h32v14H88v30H72ZM140 0h54v15h-38v13h32v14h-32v30h-16Z');
+const ease = (t) => (t < 0.5 ? 2 * t * t : 1 - Math.pow(-2 * t + 2, 2) / 2);
+const clamp = (v) => Math.min(1, Math.max(0, v));
+// the mark keeps the reference wordmark's height; width follows the FF aspect, centred on the same axis
+const mh = CFG.markH, mw = mh * 194 / 72, mx = CFG.markX + CFG.markW / 2 - mw / 2, my = CFG.markY;
+function drawMark(alpha) {
+  x.save(); x.globalAlpha = alpha; x.translate(mx, my); x.scale(mh / 72, mh / 72); x.fillStyle = CREAM; x.fill(MARK); x.restore();
+}
+window.draw = (t) => {
+  x.globalCompositeOperation = 'source-over'; x.filter = 'none';
+  x.fillStyle = CREAM; x.fillRect(0, 0, W, H);
+  // stripes: black bars centred in each pitch cell, width 0 -> pitch (measured roughly linear with soft ends)
+  const u = clamp((t - CFG.s0) / (CFG.s1 - CFG.s0)); const k = u * u * (3 - 2 * u); // smoothstep fits the measured widths
+  const bw = k * CFG.pitch + (t > CFG.s0 ? 1 : 0);
+  x.fillStyle = '#000';
+  const off = (W % CFG.pitch) / 2;
+  for (let s = -1; s * CFG.pitch < W + CFG.pitch; s++) {
+    const cx = off + s * CFG.pitch + CFG.pitch / 2;
+    x.fillRect(Math.round(cx - bw / 2), 0, Math.ceil(bw), H);
+  }
+  if (k >= 1) { x.fillRect(0, 0, W, H); }
+  // mark in difference: reads black on cream, cream on black
+  const ma = clamp((t - (CFG.s0 + 0.45)) / 0.25);
+  if (ma > 0) { x.globalCompositeOperation = 'difference'; drawMark(ma); x.globalCompositeOperation = 'source-over'; }
+  // subtitle blurs in on black
+  const sa = clamp((t - CFG.sub0) / (CFG.sub1 - CFG.sub0));
+  if (sa > 0) {
+    const text = 'DEV STUDIO';
+    x.font = `${CFG.subH * 1.35}px NBI`; x.fillStyle = CREAM; x.textBaseline = 'top';
+    const target = mw; const chars = [...text];
+    const raw = chars.reduce((a, ch) => a + x.measureText(ch).width, 0);
+    const gap = (target - raw) / (chars.length - 1);
+    x.filter = `blur(${(1 - ease(sa)) * 12}px)`; x.globalAlpha = ease(sa);
+    let px = mx;
+    for (const ch of chars) { x.fillText(ch, px, CFG.subY - CFG.subH * 0.25); px += x.measureText(ch).width + gap; }
+    x.globalAlpha = 1; x.filter = 'none';
+  }
+};
+window.CFG = CFG;
+document.fonts.load(`20px NBI`).then(() => { window.ready = true; draw(P.get('t') ? +P.get('t') : 0); });
+</script></body></html>

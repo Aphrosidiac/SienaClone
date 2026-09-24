@@ -1,0 +1,5 @@
+node_modules
+dist
+docs/reference/*/shots
+docs/qa/shots
+.DS_Store
