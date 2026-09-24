@@ -38,6 +38,7 @@ def map_url(u):
     return raw
 
 LOGO = open('src/brand/ff-logo.svg').read()
+FF_MARK = 'M0 72 16 0h14L14 72ZM24 72 40 0h14L38 72ZM72 0h54v15H88v13h32v14H88v30H72ZM140 0h54v15h-38v13h32v14h-32v30h-16Z'
 def swap_logo(m):
     cls = re.search(r'class="([^"]*svg-logo[^"]*)"', m.group(0)).group(1)
     return LOGO.replace('class="svg-logo"', f'class="{cls}"')
@@ -48,16 +49,17 @@ PROTECT = [
     'Siena film foundation, The new', 'Fundfor Cinema and TV, Siena Film Foundation', 'Mifal Hapais, Siena Film Foundation',
     'Lee joined the Siena Film Foundation', 'founded Siena Film Foundation', 'Siena Film Foundation supports',
 ]
+D_LONG, D_SHORT = '\x01DL\x01', '\x01DS\x01'  # expanded last, so no swap rule can touch the owner's name
 TEXT = [
-    ('©2024. SIENA FILM FOUNDATION. ', DISCLAIMER_SHORT),
-    ('©2024. SIENA FILM FOUNDATION. ', DISCLAIMER_SHORT),
+    ('©2024. SIENA FILM FOUNDATION. ', D_SHORT),
+    ('©2024. SIENA FILM FOUNDATION. ', D_SHORT),
     ('SIENA FILM FOUNDATION', 'FF DEV STUDIO'),
     ('SIENA FILM FOUNDATION', 'FF DEV STUDIO'),
     ('SIENA FILM', 'FF DEV'),
     ('>FOUNDATION\u00a0IS\u00a0A<', '>STUDIO\u00a0IS\u00a0A<'),  # about hero reads "SIENA FILM / FOUNDATION IS A"
     ('>SIENA<', '>FF<'),
-    ('@siena. All Rights Reserved 2024', '@ffdev.studio · ' + DISCLAIMER_SHORT),
-    ('@siena. All Rights Reserved', '@ffdev.studio · ' + DISCLAIMER_SHORT),
+    ('@siena. All Rights Reserved 2024', '@ffdev.studio · ' + D_SHORT),
+    ('@siena. All Rights Reserved', '@ffdev.studio · ' + D_SHORT),
     ('12 Cinematic Lane, Tel Aviv 6688123, Israel', 'Kuala Lumpur, Malaysia'),
     ('Siena Film Foundation', 'FF Dev Studio'),
 ]
@@ -98,19 +100,28 @@ def convert(name, out):
     h = h.replace(' data-src="/assets/media/animated_logo_black.mp4"', '')
     # --- brand
     h = re.sub(r'<svg[^>]*class="[^"]*svg-logo[^"]*"[^>]*>.*?</svg>', swap_logo, h, flags=re.S)
+    # the dashed "seal" (footer, about hero): its wordmark (53.8x20.8 at 17,53) becomes the FF mark at the same footprint
+    h = re.sub(r'(<svg[^>]*viewBox="0 0 89 88"[^>]*>.*?)<path fill="currentColor" d="[^"]*"></path>(</svg>)',
+               lambda m: m.group(1) + f'<path fill="currentColor" transform="translate(17.55 53.4) scale({20/72:.5f})" d="{FF_MARK}"></path>' + m.group(2), h, flags=re.S)
     h = EMAILS.sub(EMAIL, h)
     h = re.sub(r'(?i)lee@siena\.film|press@siena\.film', EMAIL.upper(), h)
     h = h.replace('LEE@SiENA.film', EMAIL.upper()).replace('PRESS@SiENA.FILM', EMAIL.upper())
     h = re.sub(r'https://www\.(facebook|instagram|linkedin)\.com/[^"]*', 'https://ffdev.studio', h)
     h = h.replace('https://siena.film', 'https://ffdev.studio')
     h = re.sub(r'<meta content="Siena Film Foundation is a boutique[^"]*" (name|property)="([^"]+)"/>',
-               lambda m: f'<meta content="{DISCLAIMER}" {m.group(1)}="{m.group(2)}"/>', h)
+               lambda m: f'<meta content="{D_LONG}" {m.group(1)}="{m.group(2)}"/>', h)
     keep = {f'\x00{i}\x00': p for i, p in enumerate(PROTECT)}
     for k, p in keep.items(): h = h.replace(p, k)
     for a, b in TEXT: h = h.replace(a, b)
     for k, p in keep.items(): h = h.replace(k, p)
+    h = h.replace(D_LONG, DISCLAIMER).replace(D_SHORT, DISCLAIMER_SHORT)
     # --- disclaimer on the entry screen, under the ENTER button
     h = re.sub(r'(<div class="preloader-cont">)', r'\1<p class="ff-disclaimer" data-ff="disclaimer">' + DISCLAIMER + '</p>', h, count=1)
+    # --- a YouTube page URL cannot play in <video> (the reference's By Any Means trailer is dead);
+    #     empty it so the player behaves like the film page that ships without a trailer
+    h = re.sub(r'<video src="https://(?:youtu\.be|www\.youtube\.com)/[^"]*"', '<video src=""', h)
+    # --- route hints are for the browser, not the bundler
+    h = re.sub(r'<link rel="(prefetch|prerender)" href=', r'<link vite-ignore rel="\1" href=', h)
     # --- our stylesheet + module entry
     h = h.replace('</head>', '<link rel="stylesheet" href="/src/styles/index.css"/></head>', 1)
     h = h.replace('</body>', '<script type="module" src="/src/main.js"></script></body>', 1)

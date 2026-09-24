@@ -1,0 +1,555 @@
+{
+ "meta": {
+  "url": "https://siena.film/",
+  "title": "Siena Film Foundation",
+  "capturedAt": "2026-09-24T12:43:11.290Z",
+  "viewport": {
+   "w": 390,
+   "h": 844,
+   "dpr": 1
+  },
+  "visibilityState": "visible",
+  "viewportSuspect": null,
+  "scrollHeight": 844,
+  "elementsMeasured": 1930,
+  "blockedStylesheets": 3,
+  "colorScheme": "normal",
+  "prefersDark": false
+ },
+ "typography": {
+  "combos": [
+   {
+    "value": "16px / 400 / 14.4 / -0.16px",
+    "count": 40,
+    "sample": "span.text-span"
+   },
+   {
+    "value": "9.6px / 400 / 9.6 / 3.36px",
+    "count": 14,
+    "sample": "p"
+   },
+   {
+    "value": "19.2px / 400 / 17.28 / 0px",
+    "count": 14,
+    "sample": "h3"
+   },
+   {
+    "value": "9.6px / 400 / 12.8 / 2.88px",
+    "count": 8,
+    "sample": "div.roll-cont-eyeb.parish"
+   },
+   {
+    "value": "16px / 400 / 14.4 / 0px",
+    "count": 8,
+    "sample": "div"
+   },
+   {
+    "value": "12px / 400 / 10.8 / 1.8px",
+    "count": 8,
+    "sample": "div.footagemenu-cta-tx"
+   },
+   {
+    "value": "32px / 400 / 28.8 / 0px",
+    "count": 3,
+    "sample": "div.menu-link-list-text"
+   },
+   {
+    "value": "12px / 400 / 20.8 / 1.12px",
+    "count": 3,
+    "sample": "div"
+   },
+   {
+    "value": "12px / 400 / 10.8 / 1.2px",
+    "count": 1,
+    "sample": "div.light"
+   }
+  ],
+  "families": [
+   {
+    "value": "Neue Brucke",
+    "count": 564,
+    "sample": "li.menu-link-list-item"
+   },
+   {
+    "value": "NB International",
+    "count": 181,
+    "sample": "div.w"
+   },
+   {
+    "value": "P22 Parrish Roman",
+    "count": 22,
+    "sample": "p"
+   }
+  ],
+  "sizes": [
+   {
+    "value": "16px",
+    "count": 48,
+    "sample": "span.text-span"
+   },
+   {
+    "value": "9.6px",
+    "count": 22,
+    "sample": "p"
+   },
+   {
+    "value": "19.2px",
+    "count": 14,
+    "sample": "h3"
+   },
+   {
+    "value": "12px",
+    "count": 12,
+    "sample": "div"
+   },
+   {
+    "value": "32px",
+    "count": 3,
+    "sample": "div.menu-link-list-text"
+   }
+  ],
+  "weights": [
+   {
+    "value": "400",
+    "count": 767,
+    "sample": "div.w"
+   }
+  ],
+  "lineHeights": [
+   {
+    "value": "20.8",
+    "count": 310,
+    "sample": "div.w"
+   },
+   {
+    "value": "38.4",
+    "count": 255,
+    "sample": "div.split-rollover"
+   },
+   {
+    "value": "14.4",
+    "count": 128,
+    "sample": "ul.linecallout-list.home.w-list-unstyled"
+   },
+   {
+    "value": "9.6",
+    "count": 14,
+    "sample": "p"
+   },
+   {
+    "value": "17.28",
+    "count": 14,
+    "sample": "h3"
+   },
+   {
+    "value": "24",
+    "count": 13,
+    "sample": "div.split-line-move"
+   },
+   {
+    "value": "10.8",
+    "count": 10,
+    "sample": "div.copyright-menu-text"
+   },
+   {
+    "value": "12.8",
+    "count": 8,
+    "sample": "div.roll-cont-eyeb.parish"
+   },
+   {
+    "value": "36.96",
+    "count": 8,
+    "sample": "h2.roll-cont-he.home.split-line-wrapper"
+   },
+   {
+    "value": "28.8",
+    "count": 6,
+    "sample": "a.menu-link.large.w-inline-block"
+   }
+  ],
+  "letterSpacing": [
+   {
+    "value": "0px",
+    "count": 405,
+    "sample": "div.w"
+   },
+   {
+    "value": "-1.44px",
+    "count": 276,
+    "sample": "h2.roll-cont-he.home.split-line-wrapper"
+   },
+   {
+    "value": "-0.16px",
+    "count": 48,
+    "sample": "div.paragraph"
+   },
+   {
+    "value": "3.36px",
+    "count": 14,
+    "sample": "p"
+   },
+   {
+    "value": "2.88px",
+    "count": 8,
+    "sample": "div.roll-cont-eyeb.parish"
+   },
+   {
+    "value": "1.8px",
+    "count": 8,
+    "sample": "div.footagemenu-cta-tx"
+   },
+   {
+    "value": "1.12px",
+    "count": 6,
+    "sample": "a.menu-link.xs.light"
+   },
+   {
+    "value": "1.2px",
+    "count": 2,
+    "sample": "div.copyright-menu-text"
+   }
+  ],
+  "loadedFaces": [
+   "Neue Brucke 400 normal",
+   "P22 Parrish Roman 400 normal",
+   "NB International 400 normal"
+  ],
+  "bodyMeasureChars": null
+ },
+ "color": {
+  "text": [
+   {
+    "value": "rgb(250, 247, 239)",
+    "count": 84,
+    "sample": "p"
+   },
+   {
+    "value": "rgb(0, 0, 0)",
+    "count": 15,
+    "sample": "div.menu-link-list-text"
+   }
+  ],
+  "background": [
+   {
+    "value": "rgb(250, 247, 239)",
+    "count": 37,
+    "sample": "div.menu-dots-w"
+   },
+   {
+    "value": "rgb(0, 0, 0)",
+    "count": 5,
+    "sample": "div.mobile-shadow"
+   },
+   {
+    "value": "rgba(250, 247, 239, 0)",
+    "count": 1,
+    "sample": "div.menu-dots-w.vert"
+   }
+  ],
+  "border": []
+ },
+ "spacing": {
+  "margins_padding": [
+   {
+    "value": "16px",
+    "count": 60,
+    "sample": "div.mmenu-col.btn"
+   },
+   {
+    "value": "24px",
+    "count": 40,
+    "sample": "div.abs.gg.home"
+   },
+   {
+    "value": "-3px",
+    "count": 24,
+    "sample": "div#w-node-ef5880fd-72ab-3a1d-a26b-8f9852aaae96-03d43c19.line.b-up"
+   },
+   {
+    "value": "8px",
+    "count": 16,
+    "sample": "div.home-roll-c"
+   },
+   {
+    "value": "8.44px",
+    "count": 16,
+    "sample": "div.abs.gg.home"
+   },
+   {
+    "value": "1px",
+    "count": 16,
+    "sample": "button.explore-btn-w"
+   },
+   {
+    "value": "6px",
+    "count": 16,
+    "sample": "button.explore-btn-w"
+   },
+   {
+    "value": "6.4px",
+    "count": 15,
+    "sample": "a.menu-link.large.w-inline-block"
+   },
+   {
+    "value": "24.8px",
+    "count": 15,
+    "sample": "img"
+   },
+   {
+    "value": "17.6px",
+    "count": 14,
+    "sample": "h3"
+   },
+   {
+    "value": "48.8px",
+    "count": 14,
+    "sample": "h3"
+   },
+   {
+    "value": "-30px",
+    "count": 8,
+    "sample": "span.text-span"
+   },
+   {
+    "value": "28.44px",
+    "count": 8,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "19.2px",
+    "count": 6,
+    "sample": "ul.menu-link-list"
+   },
+   {
+    "value": "21.6px",
+    "count": 5,
+    "sample": "a.menu-link.large.w-inline-block"
+   },
+   {
+    "value": "12.8px",
+    "count": 4,
+    "sample": "ul.menu-link-list.legal.w-list-unstyled"
+   },
+   {
+    "value": "9.6px",
+    "count": 4,
+    "sample": "a.menu-link.social.w-inline-block"
+   },
+   {
+    "value": "3.2px",
+    "count": 4,
+    "sample": "a.menu-link.social.bigger"
+   },
+   {
+    "value": "22.4px",
+    "count": 3,
+    "sample": "div.nav-w"
+   },
+   {
+    "value": "1.6px",
+    "count": 3,
+    "sample": "a.menu-link.large.w-inline-block"
+   },
+   {
+    "value": "30.05px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "26.84px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "32.36px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "24.52px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "24.31px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "32.58px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "29.38px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "27.52px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "25.05px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   },
+   {
+    "value": "31.84px",
+    "count": 2,
+    "sample": "figure.w-richtext-align-center.w-richtext-figure-type-image"
+   }
+  ],
+  "gaps": [
+   {
+    "value": "16px",
+    "count": 9,
+    "sample": "ul.menu-link-list.legal.w-list-unstyled"
+   },
+   {
+    "value": "3.2px",
+    "count": 8,
+    "sample": "div.awards-w.mobile.w-richtext"
+   }
+  ]
+ },
+ "shape": {
+  "radii": [],
+  "borders": [],
+  "shadows": []
+ },
+ "motion": {
+  "durations": [
+   {
+    "value": "0.2s",
+    "count": 12,
+    "sample": "a.menu-link.large.w-inline-block"
+   },
+   {
+    "value": "1.1s",
+    "count": 3,
+    "sample": "div.menu-icon-line"
+   },
+   {
+    "value": "0s",
+    "count": 1,
+    "sample": "div.menu-mobile-bg"
+   }
+  ],
+  "easings": [
+   {
+    "value": "ease",
+    "count": 13,
+    "sample": "a.menu-link.large.w-inline-block"
+   },
+   {
+    "value": "cubic-bezier(0.19, 1, 0.22, 1)",
+    "count": 3,
+    "sample": "div.menu-icon-line"
+   }
+  ],
+  "keyframeAnimations": []
+ },
+ "layout": {
+  "breakpoints": [],
+  "containerMaxWidths": [
+   {
+    "value": "1920px",
+    "count": 1,
+    "sample": "div.home-roll-w.w-dyn-items"
+   }
+  ],
+  "gridTemplates": [
+   {
+    "value": "2 cols — 104.953px 104.953px",
+    "count": 6,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "2 cols — 131px 131px",
+    "count": 4,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "2 cols — 109.047px 109.047px",
+    "count": 3,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "2 cols — 123.312px 123.312px",
+    "count": 3,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "2 cols — 114.922px 114.922px",
+    "count": 3,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "2 cols — 130.469px 130.469px",
+    "count": 3,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "3 cols — 71.8281px 71.8438px 71.8281px",
+    "count": 1,
+    "sample": "ul.menu-link-list.legal.w-list-unstyled"
+   },
+   {
+    "value": "2 cols — 114.406px 147.594px",
+    "count": 1,
+    "sample": "li.linecallout-item.home"
+   },
+   {
+    "value": "2 cols — 121.766px 140.234px",
+    "count": 1,
+    "sample": "li.linecallout-item.home"
+   }
+  ],
+  "zIndexLayers": [
+   {
+    "value": "2",
+    "count": 16,
+    "sample": "div.explore-col"
+   },
+   {
+    "value": "-1",
+    "count": 10,
+    "sample": "div.menu-dots-w.vert"
+   },
+   {
+    "value": "1000",
+    "count": 9,
+    "sample": "a.nav-link.logo.w-inline-block"
+   },
+   {
+    "value": "3",
+    "count": 8,
+    "sample": "button.explore-btn-w"
+   },
+   {
+    "value": "1",
+    "count": 2,
+    "sample": "div.w"
+   },
+   {
+    "value": "100000",
+    "count": 1,
+    "sample": "div.nav-w"
+   },
+   {
+    "value": "5",
+    "count": 1,
+    "sample": "input#mainpanel.menu-input"
+   },
+   {
+    "value": "0",
+    "count": 1,
+    "sample": "div.menu-dots-w"
+   }
+  ],
+  "hasHorizontalOverflow": false,
+  "widestNode": null
+ }
+}

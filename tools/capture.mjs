@@ -19,7 +19,7 @@ async function settle(page, max = 25000) {
     await sleep(400);
   }
   await sleep(900);
-  return page.evaluate(() => [...document.querySelectorAll('.menu-row-film-item')].find((e) => getComputedStyle(e).visibility !== 'hidden' && +getComputedStyle(e).opacity > 0.5)?.dataset.id || '');
+  return page.evaluate(() => Math.round(window.scrollY));
 }
 for (const route of routesArg.split(',')) {
   const ctx = await browser.newContext({ viewport: { width: w, height: h }, deviceScaleFactor: 1, isMobile: w < 768, hasTouch: w < 768 });
@@ -40,16 +40,17 @@ for (const route of routesArg.split(',')) {
   await page.waitForLoadState('load', { timeout: 60000 }).catch(() => console.log('load not reached', route));
   await sleep(4000);
   const film0 = await settle(page);
-  await page.screenshot({ path: `${out}/${name}-${w}-00.png` });
+  await page.screenshot({ path: `${out}/${name}-${w}-00.png`, timeout: 120000 });
   const films = [film0];
   for (let i = 1; i <= +stepsArg; i++) {
     await page.mouse.move(w / 2, h / 2);
-    for (let k = 0; k < 6; k++) { await page.mouse.wheel(0, 150); await sleep(40); }
+    // 10 x 250 px = 1.25 slides on the roll/slider (less snaps back), ~2500 px of page scroll
+    for (let k = 0; k < 10; k++) { await page.mouse.wheel(0, 250); await sleep(40); }
     await sleep(600);
     films.push(await settle(page));
-    await page.screenshot({ path: `${out}/${name}-${w}-${String(i).padStart(2, '0')}.png` });
+    await page.screenshot({ path: `${out}/${name}-${w}-${String(i).padStart(2, "0")}.png`, timeout: 120000 });
   }
-  console.log(name, w, 'films:', films.join(' > '));
+  console.log(name, w, 'scrollY:', films.join(' > '));
   await ctx.close();
 }
 await browser.close();

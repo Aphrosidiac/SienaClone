@@ -1,17 +1,14 @@
-import { Core } from '@unseenco/taxi';
+import { Core, Transition } from '@unseenco/taxi';
 import gsap from 'gsap';
 import { app } from './core/app.js';
 import { state } from './core/state.js';
 import { sounds } from './sounds.js';
 
-class Fade {
-  constructor({ wrapper }) {
-    this.wrapper = wrapper;
-  }
-  leave({ from, done }) {
+class Fade extends Transition {
+  onLeave({ from, done }) {
     app.pages.transitionOut(from).then(done);
   }
-  enter({ to, done }) {
+  onEnter({ to, done }) {
     app.pages.transitionIn(to).then(done);
   }
 }

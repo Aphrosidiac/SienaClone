@@ -30,7 +30,9 @@ app.pages = new Pages();
 app.gl = gl;
 window.app = app; // handy in devtools and for the capture tools
 
-queueMicrotask(() => {
+// SplitText freezes line breaks when it runs, and the titles are sized in `ch`: splitting before the
+// webfonts arrive bakes in the fallback font's lines (seen on the bundled build: "MY / PROJECT / X").
+document.fonts.ready.then(() => {
   app.dom = new Dom();
   queueMicrotask(() => gl.init());
   gsap.ticker.add((time) => {

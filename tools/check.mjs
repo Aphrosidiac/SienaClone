@@ -12,7 +12,8 @@ for (const url of urls) {
   page.on('request', (r) => !r.url().startsWith(origin) && !r.url().startsWith('data:') && !r.url().startsWith('blob:') && bad.push(`EXTERNAL ${r.url()}`));
   page.on('pageerror', (e) => bad.push(`PAGEERROR ${e.message}`));
   page.on('console', (m) => m.type() === 'error' && !m.text().includes('Failed to load resource') && bad.push(`CONSOLE ${m.text().slice(0, 200)}`));
-  await page.goto(url, { waitUntil: 'load' });
+  await page.goto(url, { waitUntil: 'domcontentloaded', timeout: 90000 });
+  await page.waitForLoadState('load', { timeout: 90000 }).catch(() => bad.push('load not reached in 90 s'));
   await sleep(4000);
   console.log(url, bad.length ? '' : 'clean');
   [...new Set(bad)].forEach((b) => console.log('  ', b));
