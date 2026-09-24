@@ -3,11 +3,13 @@
   "private": true,
   "version": "0.1.0",
   "type": "module",
-  "description": "FF Dev Studio portfolio demo — siena.film recreated under our own mark. See docs/brief.md.",
+  "description": "FF Dev Studio portfolio demo \u2014 siena.film recreated under our own mark. See docs/brief.md.",
   "scripts": {
     "dev": "vite --port 3164 --strictPort",
     "build": "vite build",
-    "preview": "vite preview --port 3165 --strictPort"
+    "preview": "vite preview --port 3165 --strictPort",
+    "deploy": "./scripts/deploy.sh",
+    "deploy:preview": "FF_BRANCH=preview ./scripts/deploy.sh"
   },
   "devDependencies": {
     "pixelmatch": "^7.2.0",
