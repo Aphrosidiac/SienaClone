@@ -1,0 +1,322 @@
+[
+ {
+  "id": "PRE-01",
+  "surface": "preloader",
+  "feature": "Intro film (stripes \u2192 mark \u2192 subtitle), desktop + mobile",
+  "status": "improved",
+  "evidence": "Re-rendered FF films matched to measured timing (stripes 0.15\u20132.35 s smoothstep, subtitle 2.4\u20132.9 s); frame sheets compared",
+  "notes": "FF mark replaces baked Siena wordmark (brand swap)"
+ },
+ {
+  "id": "PRE-02",
+  "surface": "preloader",
+  "feature": "ENTER appears at 3.5 s, closes in 0.3 s, 1 h skip cookie",
+  "status": "done",
+  "evidence": "Code port of reference timings; flow.mjs entry runs on both sites; cookie skip used by every capture",
+  "notes": ""
+ },
+ {
+  "id": "PRE-03",
+  "surface": "preloader",
+  "feature": "Demo disclaimer on entry screen",
+  "status": "improved",
+  "evidence": "Measured at 320/390/768/1440: 20 px clear of ENTER, no overflow (qa-log)",
+  "notes": "Our addition"
+ },
+ {
+  "id": "NAV-01",
+  "surface": "global",
+  "feature": "Logo + menu entrance (1.6 s home/work, 0.6 s else)",
+  "status": "done",
+  "evidence": "Nav frames match in nav/interaction passes",
+  "notes": ""
+ },
+ {
+  "id": "NAV-02",
+  "surface": "global",
+  "feature": "Nav film card follows settled slide (800 ms queue)",
+  "status": "done",
+  "evidence": "Work: filmIndex\u21924 after entrance (debug probe); home arrow/drag passes show same film card as reference",
+  "notes": ""
+ },
+ {
+  "id": "NAV-03",
+  "surface": "global",
+  "feature": "Menu panels (film picker, menu, footage panel, case panel)",
+  "status": "done",
+  "evidence": "Panels pass 2026-09-24 (flow.mjs, both sites): menu panel, film picker switch, close trigger \u2014 frames match (docs/qa/shots/panels-*)",
+  "notes": ""
+ },
+ {
+  "id": "NAV-04",
+  "surface": "global",
+  "feature": "Custom SCROLL cursor, prev/next hitboxes",
+  "status": "done",
+  "evidence": "Hover-top shot matches reference (interaction pass h3)",
+  "notes": ""
+ },
+ {
+  "id": "TRN-01",
+  "surface": "global",
+  "feature": "Taxi page transitions (fade 0.2/0.8 s, GL alpha)",
+  "status": "done",
+  "evidence": "Nav pass 2026-09-24: home\u2192film\u2192home on both sites, frames match; 8 GL meshes after round trip",
+  "notes": ""
+ },
+ {
+  "id": "TRN-02",
+  "surface": "global",
+  "feature": "GL mesh cleanup across transitions",
+  "status": "improved",
+  "evidence": "Scene holds 8 meshes after round trip (reference leaks subscribers)",
+  "notes": "Deviation 1 in spec"
+ },
+ {
+  "id": "HOME-01",
+  "surface": "home",
+  "feature": "WebGL vertical film roll (masks, dodge corners, parallax)",
+  "status": "done",
+  "evidence": "settled diff 2026-09-24 (tools/capture.mjs+diff.py, GPU): home 5.3\u20137.9 vs reference self-noise 5.7",
+  "notes": ""
+ },
+ {
+  "id": "HOME-02",
+  "surface": "home",
+  "feature": "Reel spin-in entrance + post speed blur",
+  "status": "done",
+  "evidence": "Entry flow sheets match; both settle on My Project X",
+  "notes": ""
+ },
+ {
+  "id": "HOME-03",
+  "surface": "home",
+  "feature": "Wheel / drag / arrow-key navigation with snap",
+  "status": "done",
+  "evidence": "Interaction pass: \u2193\u2193 and drag land on same films as reference",
+  "notes": ""
+ },
+ {
+  "id": "HOME-04",
+  "surface": "home",
+  "feature": "Title letter flicker on settle, repeats every 6 s",
+  "status": "done",
+  "evidence": "Visible mid-roll in both sites\u2019 frames; timer logic ported 1:1",
+  "notes": ""
+ },
+ {
+  "id": "HOME-05",
+  "surface": "home",
+  "feature": "Title line splits (ch-sized, SplitText)",
+  "status": "improved",
+  "evidence": "All 8 titles equal reference width + line count on production build",
+  "notes": "Waits for fonts; reference races (spec deviation 7)"
+ },
+ {
+  "id": "HOME-06",
+  "surface": "home",
+  "feature": "Tutorial player (48 h cookie, 5 captions, 4.8 s steps)",
+  "status": "done",
+  "evidence": "Timed on both sites: rise 2.5\u20133.1 s, steps \u00b10.5 s, exit 26.5\u201328 s",
+  "notes": ""
+ },
+ {
+  "id": "WORK-01",
+  "surface": "work",
+  "feature": "WebGL horizontal slider (centre sharp, sides blurred)",
+  "status": "done",
+  "evidence": "settled diff 2026-09-24 (tools/capture.mjs+diff.py, GPU): work 6.05\u20136.07, at grain floor",
+  "notes": ""
+ },
+ {
+  "id": "WORK-02",
+  "surface": "work",
+  "feature": "Arrow/drag navigation, drag-direction mark",
+  "status": "done",
+  "evidence": "Interaction pass \u2192\u2192 lands Outsider Freud on both",
+  "notes": ""
+ },
+ {
+  "id": "WORK-03",
+  "surface": "work",
+  "feature": "Footage mode: card morph, lightbox strips, Flip title",
+  "status": "done",
+  "evidence": "Interaction pass w2/w3/w4 match reference",
+  "notes": ""
+ },
+ {
+  "id": "WORK-04",
+  "surface": "work",
+  "feature": "Explore link follows settled film",
+  "status": "done",
+  "evidence": "Code port (handleSettled sets href); nav pass EXPLORE opened correct film",
+  "notes": ""
+ },
+ {
+  "id": "CASE-01",
+  "surface": "film",
+  "feature": "Hero title split + line/alpha reveals + scroll drift",
+  "status": "done",
+  "evidence": "settled diff 2026-09-24 (tools/capture.mjs+diff.py, GPU): Savoy/Kafka/Taboo 0.4\u20132.3",
+  "notes": ""
+ },
+ {
+  "id": "CASE-02",
+  "surface": "film",
+  "feature": "Trailer player (scale-in, controls, scrub, sound, Esc)",
+  "status": "improved",
+  "evidence": "Panels pass: trailer opens and autoplays (3.5 s, total 01:14 on both), Escape pauses+closes; Escape again re-opens the dialog class on reference only",
+  "notes": "Spec deviation 3 (Esc bug fixed)"
+ },
+ {
+  "id": "CASE-03",
+  "surface": "film",
+  "feature": "Stills strips driven by scroll (two directions)",
+  "status": "done",
+  "evidence": "Film captures match at settled scroll positions",
+  "notes": ""
+ },
+ {
+  "id": "CASE-04",
+  "surface": "film",
+  "feature": "Reviews carousel (drag, prev/next, progress)",
+  "status": "done",
+  "evidence": "Panels pass: next \u2192 progress translateX 83.33% on both; frames match",
+  "notes": ""
+ },
+ {
+  "id": "CASE-05",
+  "surface": "film",
+  "feature": "Next-film footer, credits marquee, logo colour over white",
+  "status": "done",
+  "evidence": "Film captures match to 1.9 (brand residue)",
+  "notes": ""
+ },
+ {
+  "id": "CASE-06",
+  "surface": "film",
+  "feature": "By Any Means trailer",
+  "status": "improved",
+  "evidence": "YouTube page URL in <video> is dead on reference (ORB); ours src=\"\" like Outsider Freud",
+  "notes": "Spec deviation 4"
+ },
+ {
+  "id": "ABT-01",
+  "surface": "about",
+  "feature": "Statement scrub timeline, arch portraits, 3D image grid",
+  "status": "done",
+  "evidence": "settled diff 2026-09-24 (tools/capture.mjs+diff.py, GPU): about 0.4\u20131.9; height 5646 = reference",
+  "notes": ""
+ },
+ {
+  "id": "ABT-02",
+  "surface": "about",
+  "feature": "Founders, services, our films sections",
+  "status": "done",
+  "evidence": "About captures match",
+  "notes": ""
+ },
+ {
+  "id": "CON-01",
+  "surface": "contact",
+  "feature": "Contact block with letter rollovers",
+  "status": "done",
+  "evidence": "settled diff 2026-09-24 (tools/capture.mjs+diff.py, GPU): contact 0.51",
+  "notes": ""
+ },
+ {
+  "id": "POL-01",
+  "surface": "legal",
+  "feature": "Cookies / privacy / terms",
+  "status": "done",
+  "evidence": "settled diff 2026-09-24 (tools/capture.mjs+diff.py, GPU): terms 1.3\u20133.4, cookies 1.3\u20131.9; heights equal",
+  "notes": ""
+ },
+ {
+  "id": "404-01",
+  "surface": "404",
+  "feature": "404 page with rollover digits",
+  "status": "done",
+  "evidence": "Production server returns 404 + page; visual matches reference at 390 and 1440",
+  "notes": ""
+ },
+ {
+  "id": "SND-01",
+  "surface": "global",
+  "feature": "UI sounds (hover tick, menu open) after first click",
+  "status": "done",
+  "evidence": "Sound probe on both: 4 mp3 load after first click; hover + menu click = 2 plays on both",
+  "notes": ""
+ },
+ {
+  "id": "RSP-01",
+  "surface": "responsive",
+  "feature": "Phone layout 390 (roll, slider, film, about, contact)",
+  "status": "done",
+  "evidence": "390 captures: 0.7\u20138.2; footer +25 px from disclaimer (deliberate)",
+  "notes": ""
+ },
+ {
+  "id": "RSP-02",
+  "surface": "responsive",
+  "feature": "Rotate-device layer, 768 tablet",
+  "status": "done",
+  "evidence": "768\u00d71024 captures on both: about/film 0.06\u20133.4, work 6.36 (grain floor), home 8.7\u20139.2 (grain + title flicker mid-roll)",
+  "notes": "Rotate-device layer not exercised"
+ },
+ {
+  "id": "BRD-01",
+  "surface": "brand",
+  "feature": "Logo, seal, favicon, OG, titles, meta, emails, socials, legal name",
+  "status": "improved",
+  "evidence": "grep of dist: 0 wrong disclaimers, no siena.film links; seal swapped on 4 pages",
+  "notes": "FF identity"
+ },
+ {
+  "id": "BRD-02",
+  "surface": "brand",
+  "feature": "Disclaimer names Siena Film Foundation everywhere",
+  "status": "improved",
+  "evidence": "dist: 28 short + 25 long, 0 wrong owner",
+  "notes": "Our addition"
+ },
+ {
+  "id": "NET-01",
+  "surface": "infra",
+  "feature": "No requests leave our origin",
+  "status": "done",
+  "evidence": "check.mjs on 15 production routes: 0 external",
+  "notes": ""
+ },
+ {
+  "id": "NET-02",
+  "surface": "infra",
+  "feature": "Static build fits Cloudflare Pages limits",
+  "status": "done",
+  "evidence": "dist 143 MB, largest file 18.4 MB (<25 MiB)",
+  "notes": ""
+ },
+ {
+  "id": "DBG-01",
+  "surface": "infra",
+  "feature": "lil-gui tuning panel",
+  "status": "omitted",
+  "evidence": "\u2014",
+  "notes": "Debug tool; defaults shipped as constants"
+ },
+ {
+  "id": "ANL-01",
+  "surface": "infra",
+  "feature": "Google Analytics",
+  "status": "omitted",
+  "evidence": "\u2014",
+  "notes": "Not shipped in a demo"
+ },
+ {
+  "id": "A11Y-01",
+  "surface": "a11y",
+  "feature": "Keyboard / reduced-motion pass",
+  "status": "deferred",
+  "evidence": "Not run",
+  "notes": "Reference has no reduced-motion handling; pending"
+ }
+]

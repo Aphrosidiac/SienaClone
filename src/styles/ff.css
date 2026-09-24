@@ -1,11 +1,12 @@
 /* FF Dev Studio additions on top of the reference stylesheets. Keep this file small: every rule
    here is a deliberate divergence, listed in docs/reference-spec.md (Provenance / Deviations). */
 
-/* Demo disclaimer on the entry screen: sits under the ENTER button, same type as the button label. */
+/* Demo disclaimer on the entry screen: sits just above the ENTER button (which rests on the
+   container's var(--gy) padding and is 44px tall), clear of it at every width. */
 .ff-disclaimer {
   position: absolute;
   left: 50%;
-  bottom: 2.5rem;
+  bottom: calc(var(--gy) + 44px + 1.25rem);
   transform: translateX(-50%);
   width: min(44rem, calc(100vw - 2rem));
   margin: 0;

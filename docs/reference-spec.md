@@ -214,7 +214,11 @@ The Webflow markup and CSS carry no Webflow interactions (0 `data-w-id`). All be
 4. **By Any Means trailer.** The `<video>` pointed at a YouTube page URL, which cannot play (the browser blocks it: ERR_BLOCKED_BY_ORB). Ours ships `src=""`, as Outsider Freud does on the reference.
 5. **Debug panel.** The hidden lil-gui panel (key `g`) is dropped. Its default values ship as constants.
 6. **Console logs.** Stray `console.log('out' | 'init' | 'destroy')` calls are removed.
-7. **GSAP version.** 3.15 instead of 3.12.5, because SplitText, Flip and DrawSVG are only on npm from 3.13. Differences, if any, go in the QA log.
+7. **Font race in title splits.** SplitText freezes line breaks when it runs, and the titles are sized in `ch`. The reference sometimes splits before its webfonts arrive and shows "MY / PROJECT / X" on 3 lines. Ours waits for `document.fonts.ready` and always gets the intended 2 lines.
+8. **GSAP version.** 3.15 instead of 3.12.5, because SplitText, Flip and DrawSVG are only on npm from 3.13. Differences, if any, go in the QA log.
+
+**Deliberate, from our identity:**
+- The footer line carries the short disclaimer. At 390 px it wraps to 3 lines where the reference's "@siena. All Rights Reserved" takes 1, so pages with that footer are 25–26 px taller on phones.
 
 **Kept as shipped, although odd:**
 - the film-page reverse stills row is blurred only when the strip sits exactly at 0. This is an operator-precedence slip in the original.
