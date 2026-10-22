@@ -11,6 +11,7 @@ DAY = 'docs/reference/2026-09-24'
 DISCLAIMER = 'Demo recreation of Siena Film Foundation by FF Dev Studio · Every film, still, video and word about the films belongs to Siena Film Foundation and its filmmakers · Not affiliated · Not a live site'
 DISCLAIMER_SHORT = 'Demo recreation of Siena Film Foundation · The assets are not ours · Not affiliated'
 EMAIL = 'hello@ffdev.studio'
+WHATSAPP, WA_LINK = '+60 13 907 8719', 'https://wa.me/60139078719'  # FF's, as on ffdev.studio (PhantomClone src/data.js CONTACT)
 PAGES = {
     'index': 'index.html', 'work': 'work/index.html', 'about': 'about/index.html', 'contact': 'contact/index.html',
     'cookies': 'cookies/index.html', 'privacy': 'privacy/index.html', 'terms': 'terms/index.html', '404xyz': '404.html',
@@ -61,8 +62,19 @@ TEXT = [
     ('@siena. All Rights Reserved 2024', '@ffdev.studio · ' + D_SHORT),
     ('@siena. All Rights Reserved', '@ffdev.studio · ' + D_SHORT),
     ('12 Cinematic Lane, Tel Aviv 6688123, Israel', 'Kuala Lumpur, Malaysia'),
+    # the studio's own contact details: their phone, address and office become FF's (film facts such as a film's
+    # "Location Tel Aviv" and the terms' governing-law clauses are left as written)
+    ('<a href="tel:+972542804049" class="div-block-23 w-inline-block"><div data-a="alpha" class="roll-cont-eyeb parish mb-0 contact-off">PHONE NUMBER</div><div data-a="item" class="contact-lab">+972-54-2804049</div>',
+     f'<a href="{WA_LINK}" target="_blank" rel="noopener" class="div-block-23 w-inline-block"><div data-a="alpha" class="roll-cont-eyeb parish mb-0 contact-off">WHATSAPP</div><div data-a="item" class="contact-lab">{WHATSAPP}</div>'),
+    ('Dizengoff ST, 123, Tel Aviv', 'Kuala Lumpur, Malaysia'),
+    ('<strong>Phone:</strong> +972 3 555 1234 (Mon-Fri, 9:00 AM – 5:00 PM IST)', f'<strong>WhatsApp:</strong> {WHATSAPP}'),
+    ('<strong>Phone:</strong> +972 3 555 1234', f'<strong>WhatsApp:</strong> {WHATSAPP}'),
+    ('<p><strong>Visit Us:</strong> Schedule a consultation at our Tel Aviv office by appointment.</p>', ''),
+    ('headquartered in Tel Aviv, Israel', 'based in Kuala Lumpur, Malaysia'),
     ('Siena Film Foundation', 'FF Dev Studio'),
 ]
+# what must never survive into a page: the reference's phone numbers, street address and office
+CONTACT_LEFT = re.compile(r'\+972|tel:|Dizengoff|Tel Aviv office')
 EMAILS = re.compile(r'(?i)\b(lee|press|info|legal|licensing)@siena\.film')
 
 def convert(name, out):
@@ -137,5 +149,6 @@ for out in PAGES.values():
     hits = [m.group(0) for m in re.finditer(r'.{40}(?i:siena).{40}', t2)]
     ext = re.findall(r'https://[^"\s)]+', t2)
     left[out] = (len(hits), len([e for e in ext if 'ffdev.studio' not in e]))
+    if CONTACT_LEFT.search(t): sys.exit(f'{out}: reference contact details left: {CONTACT_LEFT.findall(t)}')
 print(json.dumps(left, indent=0))
 print('unmapped asset urls:', len(missing)); [print(' ', u) for u in sorted(missing)[:10]]
